@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :tweets
   
   validates :username, :email, :full_name, presence: true
   validates :email, :username, uniqueness: true
