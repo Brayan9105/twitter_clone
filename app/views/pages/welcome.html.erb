@@ -1,2 +1,7 @@
-<h1>Pages#welcome</h1>
-<p>Find me in app/views/pages/welcome.html.erb</p>
+<%= link_to 'Tweet', new_tweet_path %><br>
+<%= link_to 'Tweet', new_tweet_path %><br>
+
+<% @tweets.each do |tweet| %>
+  <%= tweet.user.full_name %>, @<%= tweet.user.username %> - <%= time_ago_in_words(tweet.created_at) %> ago<br>
+  <%= tweet.body %>
+<% end %>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root 'pages#welcome'
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :tweets, except: [:show]
+  get '/:user_id/tweets/:tweet_id', to: 'tweets#show', as: 'user_tweet'
+  get '/:user_id/tweets', to: 'users#show', as: 'user_tweets'
+
 end
