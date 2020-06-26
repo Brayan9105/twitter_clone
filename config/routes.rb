@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'pages#welcome'
+  root 'pages#feed'
   devise_for :users
   resources :tweets, except: [:show]
   get '/:user_id/tweets/:tweet_id', to: 'tweets#show', as: 'user_tweet'
