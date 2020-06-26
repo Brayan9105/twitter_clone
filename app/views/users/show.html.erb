@@ -1,0 +1,24 @@
+<h1>
+  <%= current_user.full_name %>
+</h1>
+<p>
+  <%= current_user.username %>
+</p>
+
+<table>
+  <tr>
+    <th>tweets</th>
+    <th>Followers</th>
+    <th>Following</th>
+  </tr>
+  <tr>
+    <td><%= current_user.tweets.size %></td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+</table>
+
+<% @tweets.each do |tweet| %>
+  <%= tweet.user.full_name %>, @<%= tweet.user.username %> - <%= time_ago_in_words(tweet.created_at) %> ago<br>
+  <%= tweet.body %>
+<% end %><br>

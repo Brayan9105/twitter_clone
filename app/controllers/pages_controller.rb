@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
-  def welcome
+  def feed
+    @tweets = current_user.tweets
   end
 end

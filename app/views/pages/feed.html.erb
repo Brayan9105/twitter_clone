@@ -1,0 +1,7 @@
+<%= link_to 'Tweet', new_tweet_path %><br>
+<%= link_to 'Profile', user_tweets_path(current_user) %><br>
+
+<% @tweets.each do |tweet| %>
+  <%= tweet.user.full_name %>, @<%= tweet.user.username %> - <%= time_ago_in_words(tweet.created_at) %> ago<br>
+  <%= tweet.body %>
+<% end %>
