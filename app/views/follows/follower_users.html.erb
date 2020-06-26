@@ -1,0 +1,6 @@
+<h1>Followers</h1>
+
+<% @followers.each do |follower| %>
+  <%= link_to follower.full_name, user_tweets_path(follower) %>
+  <%= follower.username %><br>
+<% end %>

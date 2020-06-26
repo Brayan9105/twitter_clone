@@ -1,24 +1,24 @@
 <h1>
-  <%= current_user.full_name %>
+  <%= @user.full_name %>
 </h1>
 <p>
-  <%= current_user.username %>
+  <%= @user.username %>
 </p>
 
 <table>
   <tr>
     <th>tweets</th>
-    <th>Followers</th>
-    <th>Following</th>
+    <th><%= link_to 'Followers', follower_users_path(@user) %></th>
+    <th><%= link_to 'Following', followings_users_path(@user) %></th>
   </tr>
   <tr>
-    <td><%= current_user.tweets.size %></td>
-    <td><%= current_user.followers.size %></td>
-    <td><%= current_user.following.size %></td>
+    <td><%= @user.tweets.size %></td>
+    <td><%= @user.followers.size %></td>
+    <td><%= @user.following.size %></td>
   </tr>
 </table>
 
 <% @tweets.each do |tweet| %>
   <%= tweet.user.full_name %>, @<%= tweet.user.username %> - <%= time_ago_in_words(tweet.created_at) %> ago<br>
-  <%= tweet.body %>
-<% end %><br>
+  <%= tweet.body %><br><br>
+<% end %>
