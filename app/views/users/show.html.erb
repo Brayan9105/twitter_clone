@@ -3,7 +3,12 @@
 </h1>
 <p>
   <%= @user.username %>
+  <%= @user.id %>
 </p>
+<p>
+  <%= link_to 'Follow', follow_path(@user), method: :post unless current_user.already_followed?(@user.id) %>
+</p>
+<p><%= link_to 'Tweet', new_tweet_path %></p>
 
 <table>
   <tr>

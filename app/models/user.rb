@@ -16,4 +16,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  def already_followed?(user_id)
+    return true if self.id == user_id
+    self.following.where("following_id = ?", user_id).exists?
+  end
 end

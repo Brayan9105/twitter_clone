@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
   def feed
-    @tweets = Tweet.where("user_id = ? OR user_id = ? OR user_id = ?", current_user.following_ids, current_user.follower_ids, current_user).order(id: 'DESC')
+    users = current_user.follower_ids
+    users << current_user.following_ids
+    users << current_user.id
+    users.flatten!.uniq!
+    @tweets = Tweet.where(user_id: users).order(created_at: :desc)
   end
 end

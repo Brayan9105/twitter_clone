@@ -1,5 +1,4 @@
 <% if user_signed_in? %>
-<%= link_to current_user.username, user_tweets_path(current_user) %><br>
   <%= link_to 'Tweet', new_tweet_path %><br><br>
 
   <% @tweets.each do |tweet| %>
