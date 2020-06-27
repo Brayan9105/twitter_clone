@@ -7,11 +7,11 @@
           <tr>
             <td><strong>Full name: </strong> <%= user.full_name %></td>
             <td><strong>Username: </strong> <%= user.username %></td>
-            <td><strong>Actions: </strong> <%= link_to "View Profile", user_tweets_path(user), class: "btn btn-sm btn-success" %>
+            <td><strong>Actions: </strong> <%= link_to "View Profile", user_tweets_path(user), class: "btn btn-sm btn-primary" %>
               <% if current_user.already_followed?(user.id) %>
-                <span class="badge badge-secondar">Following</span>
+                <span class="badge badge-success">Following</span>
               <% else %>
-              <%= link_to 'Follow', follow_path(user), method: :post  %>
+              <%= link_to 'Follow', follow_path(user), method: :post, class: 'btn btn-warning'  %>
               <% end %>
             </td>
           </tr>
