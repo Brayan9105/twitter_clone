@@ -1,0 +1,8 @@
+<h1>Search user</h1>
+<%= form_tag search_path, remote: true, method: :get do %>
+  <%= text_field_tag :username, params[:user], placeholder: 'Username' %>
+  <%= button_tag 'Search' %>
+<% end %>
+
+<div id="user-results">
+</div>

@@ -21,4 +21,14 @@ class User < ApplicationRecord
   def already_followed?(user_id)
     self.following.where("following_id = ?", user_id).exists?
   end
+
+  def self.search(username)
+    username.downcase!
+    username.strip!
+    where("username like ?", "#{username}%")
+  end
+
+  def except_current_user(users)
+    users.reject { |user| user.id == self.id }
+  end
 end

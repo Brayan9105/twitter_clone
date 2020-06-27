@@ -1,0 +1,22 @@
+
+<% if @users %>
+  <div class="card card-header results-block">
+    <table class="col-md-12">
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><strong>Full name: </strong> <%= user.full_name %></td>
+            <td><strong>Username: </strong> <%= user.username %></td>
+            <td><strong>Actions: </strong> <%= link_to "View Profile", user_tweets_path(user), class: "btn btn-sm btn-success" %>
+              <% if current_user.already_followed?(user.id) %>
+                <span class="badge badge-secondar">Following</span>
+              <% else %>
+              <%= link_to 'Follow', follow_path(user), method: :post  %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
