@@ -6,7 +6,13 @@
   <%= @user.id %>
 </p>
 <p>
-  <%= link_to 'Follow', follow_path(@user), method: :post unless current_user.already_followed?(@user.id) %>
+  <% unless current_user.id == @user.id %>
+    <% if current_user.already_followed?(@user.id) %>
+      <%= link_to 'Unfollow', delete_follow_path(@user), method: :delete %>
+    <% else %>
+      <%= link_to 'Follow', follow_path(@user), method: :post  %>
+    <% end %>
+  <% end %>
 </p>
 <p><%= link_to 'Tweet', new_tweet_path %></p>
 

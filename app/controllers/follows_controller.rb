@@ -6,6 +6,13 @@ class FollowsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    user = User.find(params[:id])
+    follow = Follow.where(following_id: user.id, user_id: current_user.id).first
+    follow.destroy
+    redirect_to root_path
+  end
+
   def follower_users
     @user = User.find(params[:user_id])
     @followers = @user.followers
