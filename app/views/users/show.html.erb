@@ -1,24 +1,35 @@
 <h1>
-  <%= current_user.full_name %>
+  <%= @user.full_name %>
 </h1>
 <p>
-  <%= current_user.username %>
+  <%= @user.username %>
+  <%= @user.id %>
 </p>
+<p>
+  <% unless current_user.id == @user.id %>
+    <% if current_user.already_followed?(@user.id) %>
+      <%= link_to 'Unfollow', delete_follow_path(@user), method: :delete %>
+    <% else %>
+      <%= link_to 'Follow', follow_path(@user), method: :post  %>
+    <% end %>
+  <% end %>
+</p>
+<p><%= link_to 'Tweet', new_tweet_path %></p>
 
 <table>
   <tr>
     <th>tweets</th>
-    <th>Followers</th>
-    <th>Following</th>
+    <th><%= link_to 'Followers', follower_users_path(@user) %></th>
+    <th><%= link_to 'Following', followings_users_path(@user) %></th>
   </tr>
   <tr>
-    <td><%= current_user.tweets.size %></td>
-    <td>0</td>
-    <td>0</td>
+    <td><%= @user.tweets.size %></td>
+    <td><%= @user.followers.size %></td>
+    <td><%= @user.following.size %></td>
   </tr>
 </table>
 
 <% @tweets.each do |tweet| %>
   <%= tweet.user.full_name %>, @<%= tweet.user.username %> - <%= time_ago_in_words(tweet.created_at) %> ago<br>
-  <%= tweet.body %>
-<% end %><br>
+  <%= tweet.body %><br><br>
+<% end %>
