@@ -31,7 +31,7 @@
 <div class="row">
   <div class="col-12">
     <div class="my-4 col-6 mx-auto">
-      <%= link_to 'Tweet', new_tweet_path, class: 'btn btn-success btn-lg' %>
+      <%= link_to 'Tweet', new_tweet_path, class: 'btn btn-success btn-lg' if current_user.id == @user.id%>
     </div>
 
     <% @tweets.each do |tweet| %>
