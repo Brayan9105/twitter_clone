@@ -6,15 +6,21 @@
       <%= link_to 'Tweet', new_tweet_path, class: 'btn btn-success btn-lg' %>
     </div>
 
+    
     <% @tweets.each do |tweet| %>
-      <div class="card my-4 mx-auto col-6 ">
-        <div class="card-header">
-          <%= tweet.user.full_name %>, @<%= tweet.user.username %> - <%= time_ago_in_words(tweet.created_at) %> ago<br>
-        </div>
-        <div class="card-body">
-          <%= tweet.body %>
-        </div>
+    <div class="card my-4 mx-auto col-6 ">
+      <div class="card-header">
+        <%= tweet.user.full_name %>, @<%= tweet.user.username %> - <%= time_ago_in_words(tweet.created_at) %> ago<br>
       </div>
+      <div class="card-body">
+        <%= tweet.body %>
+      </div>
+    </div>
     <% end %>
+
+    <div class="my-4 mx-auto col-6">
+      <%= will_paginate @tweets %>
+    </div>
   </div>
 </div>
+

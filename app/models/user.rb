@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
+
+  self.per_page = 10
+
   has_many :tweets
   
   has_many :follows
