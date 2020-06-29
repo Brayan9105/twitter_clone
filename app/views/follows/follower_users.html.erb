@@ -1,7 +1,30 @@
 <%= link_to @user.username, user_tweets_path(@user) %>
 <h1>Followers</h1>
 
-<% @followers.each do |follower| %>
-  <%= link_to follower.full_name, user_tweets_path(follower) %>
-  <%= follower.username %><br>
-<% end %>
+<div class="row">
+  <div class="col-12">
+    <div class="col-6 mx-auto">
+      <table class="table">
+        <% @followers.each do |follower| %>
+        <tr>
+          <td>
+            <%= link_to follower.full_name, user_tweets_path(follower) %>
+          </td>
+          <td>
+            <%= follower.username %><br>
+          </td>
+          <td>
+            <% unless current_user.id == follower.id %>
+              <% if current_user.already_followed?(follower.id) %>
+                <span class="badge badge-success">Following</span>
+              <% else %>
+                <%= link_to 'Follow', follow_path(follower.id), method: :post, class: 'btn btn-warning'  %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -11,13 +11,15 @@
 
   <body>
     <% if  user_signed_in? %>
-      <%= link_to 'Twitter', root_path %>
-      <%= link_to 'Profile', user_tweets_path(current_user) %>
-      <%= link_to 'Search user', search_user_path %>
-      <%= link_to 'Sign out', destroy_user_session_path, method: :delete if user_signed_in? %>
+      <%= render 'layouts/navbar' %>
     <% end %>
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+    
+    <div  class="container">
+      <%= yield %>
+    </div>
+
   </body>
 </html>
