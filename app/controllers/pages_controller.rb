@@ -7,3 +7,4 @@ class PagesController < ApplicationController
     @tweets = Tweet.where(user_id: users).paginate(page: params[:page]).order(created_at: :desc)
   end
 end
+ 
